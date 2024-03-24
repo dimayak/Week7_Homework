@@ -16,6 +16,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
+        // Sit
         if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.S) || !_grounded)
         {
             _colliderTransform.localScale = Vector3.Lerp(_colliderTransform.localScale, _sitScale, Time.deltaTime * _sitSpeed);

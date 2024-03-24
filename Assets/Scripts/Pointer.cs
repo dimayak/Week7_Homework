@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Pointer : MonoBehaviour
@@ -16,5 +15,8 @@ public class Pointer : MonoBehaviour
         Vector3 point = ray.GetPoint(distance);
 
         _aim.position = point;
+
+        Vector3 toAim = _aim.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(toAim);
     }
 }
