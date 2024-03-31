@@ -6,7 +6,7 @@ public class Pointer : MonoBehaviour
     [SerializeField] private Camera _playerCamera;
     private Plane _plane = new Plane(-Vector3.forward, Vector3.zero);
 
-    void Update()
+    void LateUpdate()
     {
         Ray ray = _playerCamera.ScreenPointToRay(Input.mousePosition);
 

@@ -39,23 +39,25 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         float speedMultiplier = 1.0f;
-
-        // Controlling character in air is more difficult
-        if (!_grounded) {
-            speedMultiplier = 0.2f;
-        }
-        // Move
         float hor = Input.GetAxis("Horizontal");
 
-        // Limit speed
-        if (hor > 0.0f && _rigidBody.velocity.x > _maxMoveSpeed)
+        // Controlling character in air is more difficult
+        if (!_grounded)
         {
-            speedMultiplier = 0.0f;
+            speedMultiplier = 0.2f;
+
+            // Limit speed
+            if (hor > 0.0f && _rigidBody.velocity.x > _maxMoveSpeed)
+            {
+                speedMultiplier = 0.0f;
+            }
+            if (hor < 0.0f && _rigidBody.velocity.x < -_maxMoveSpeed)
+            {
+                speedMultiplier = 0.0f;
+            }
         }
-        if (hor < 0.0f && _rigidBody.velocity.x < -_maxMoveSpeed)
-        {
-            speedMultiplier = 0.0f;
-        }
+
+        // Move
 
         float forceX = hor * _moveSpeed * speedMultiplier;
         _rigidBody.AddForce(forceX, 0, 0, ForceMode.VelocityChange);
