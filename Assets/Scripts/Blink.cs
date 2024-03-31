@@ -20,7 +20,10 @@ public class Blink : MonoBehaviour
 
             for (int i = 0; i < _renderers.Length; i++)
             {
-                _renderers[i].material.SetColor("_EmissionColor", color);
+                for (int j = 0; j < _renderers[i].materials.Length; j++)
+                {
+                    _renderers[i].materials[j].SetColor("_EmissionColor", color);
+                }
             }
             yield return null;
         }
